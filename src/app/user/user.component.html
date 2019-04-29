@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="col-md-12">
+    <h1>User List</h1>
+      <table class="table table-bordered table-responsive-lg table-striped table-hover">
+    <thead>
+      <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Name</th>
+        <th class="text-center">Mobile</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.Mobile }}</td>
+        
+        <td>
+          <button class="btn btn-info"
+                        (click)="showEditUserForm(user)">
+                       <i class="fa fa-edit"></i>
+              </button> &nbsp;&nbsp;&nbsp;
+          <button class="btn btn-danger"
+                       (click)="removeUser(user)">
+                     <i class="	glyphicon glyphicon-trash"></i>
+            </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" class="btn btn-success"
+               (click)="showAddUserForm()">Add New User</button>
+  <br />
+  <br />
+
+  <form *ngIf="userForm">
+    <h2>Add New User</h2>&nbsp;&nbsp;
+    <p>ID: &nbsp;&nbsp;<input type="text"
+                           name="id"
+                           [(ngModel)]="newUser.id" /></p>
+    <p>Name: <input type="text"
+                                 name="name"
+                                 [(ngModel)]="newUser.name" /></p>
+    
+    <p>Mobile: <input type="text"
+                                  name="Mobile"
+                                  [(ngModel)]="newUser.Mobile" /></p>                             
+    <p>
+      <button type="button"
+                   class="btn btn-primary"
+                   (click)="saveUser(newUser)">Submit</button>&nbsp;&nbsp;
+      <button type="button"
+                   class="btn btn-warning"
+                   (click)="cancelNewUser()">Cancel</button>
+    </p>
+   </form>
+
+    <form *ngIf="editUserForm">
+    <h2>Edit User Details</h2>
+    <p>ID: &nbsp;&nbsp;<input type="text"
+                           name="id"
+                           [(ngModel)]="editedUser.id" /></p>
+    <p>Name: <input type="text"
+                                 name="name"
+                                 [(ngModel)]="editedUser.name" /></p>
+    
+    <p>Mobile: <input type="text"
+                                  name="Mobile"
+                                  [(ngModel)]="editedUser.Mobile" /></p>
+    <p>
+      <button type="button"
+                   class="btn btn-primary"
+                   (click)="updateUser(editedUser)">Submit</button>&nbsp;&nbsp;
+      <button type="button"
+                   class="btn btn-warning"
+                   (click)="cancelEdits()">Cancel</button>
+    </p>
+   </form>
+  </div>
+</div>
